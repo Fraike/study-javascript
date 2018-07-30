@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function t(age) {
+            console.log(age); //
+            var age = 99;
+            console.log(age);
+
+            function age() {
+
+            }
+            console.log(age);
+        }
+        t(5)
+        // 1、词法分析
+        //     接受参数AO.age = 5
+        //     有一个函数声明age()。则把原有的age=5替换成age=function(){}
+        // 2、执行过程
+        //     执行第一个console的时候，当前age是一个函数，所以输出一个函数
+        //     执行第二个console的时候，则把99赋值给age
+        //     第三个consoel的时候，中间没有赋值，则依然输出99
+        var value = 1;
+
+        var foo = {
+            value: 2,
+            bar: function () {
+                return this.value;
+            }
+        }
+
+        //示例1
+        console.log(foo.bar()); // 2
+        //示例2
+        console.log((foo.bar)()); // 2
+        //示例3
+        console.log((foo.bar = foo.bar)()); // 1
+        //示例4
+        console.log((false || foo.bar)()); // 1
+        //示例5
+        console.log((foo.bar, foo.bar)()); // 1
+    </script>
+</body>
+
+</html>
